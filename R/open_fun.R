@@ -2,8 +2,17 @@
 #' @param fun function or character. The function to open in GitHub.
 #' @param verbose logical. Whether or not to make messages.
 #' @param dev logical. If true, CRAN will not be searched first.  If false, it will.
+#' @param author character. A vector of GitHub usernames to search through.  Will be modified to include cran.
 #' @export
-open_fun <- function(fun, verbose = TRUE, dev = FALSE) {
+open_fun <- function(fun, verbose = TRUE, dev = FALSE, author = NULL) {
+  if (is.null(author)) {
+    if (is.null(getOption('batbelt.openfun.authors'))) {
+      author <- c('hadley', 'robertzk', 'peterhurford')
+    } else {
+      author <- getOption('batbelt.openfun.authors')
+    }
+  }
+
   if (!is.character(fun)) fun <- deparse(substitute(fun))
   
   package <- paris::find_fun(fun)
@@ -16,11 +25,11 @@ open_fun <- function(fun, verbose = TRUE, dev = FALSE) {
     stop('Cannot open in GitHub because ', sQuote(fun), ' is in R base libraries.')
   }
 
-  authors <- c('cran', 'hadley', 'robertzk', 'peterhurford')
-  if (isTRUE(dev)) { authors <- c(authors[-1], 'cran') }      # Put cran at end of search.
+  if (!('cran' %in% author)) { author <- c('cran', author) } # Always include cran.
+  if (isTRUE(dev)) { author <- c(author[-1], 'cran') }        # Put cran at end of search in dev mode.
 
   attempts <- list()
-  for (author in authors) {
+  for (author in author) {
     ll <- list(package, fun, author, cap_r = FALSE)
     attempts[[length(attempts) + 1]] <- ll
     ll$cap_r <- TRUE
@@ -44,7 +53,7 @@ open_fun <- function(fun, verbose = TRUE, dev = FALSE) {
     }
     amount_prior_attempts <- length(attempts)
     attempts <- list()
-    for (author in authors) {
+    for (author in author) {
       ll <- list(package, fun, author)
       attempts[[length(attempts) + 1]] <- ll
     }
@@ -59,6 +68,7 @@ open_fun <- function(fun, verbose = TRUE, dev = FALSE) {
       }
     }
   }
+  if (is.error(try)) stop('Failed to find the specified repo.')
 }
 
 is.error <- function(curl_output) {

@@ -4,7 +4,8 @@
 \alias{open_fun}
 \title{Opens a function in GitHub or dies trying.}
 \usage{
-open_fun(fun, verbose = TRUE, dev = FALSE)
+open_fun(fun, verbose = TRUE, dev = FALSE, author = c("hadley",
+  "robertzk", "peterhurford"))
 }
 \arguments{
 \item{fun}{function or character. The function to open in GitHub.}
@@ -12,6 +13,8 @@ open_fun(fun, verbose = TRUE, dev = FALSE)
 \item{verbose}{logical. Whether or not to make messages.}
 
 \item{dev}{logical. If true, CRAN will not be searched first.  If false, it will.}
+
+\item{author}{character. A vector of GitHub usernames to search through.  Will be modified to include cran.}
 }
 \description{
 Opens a function in GitHub or dies trying.
