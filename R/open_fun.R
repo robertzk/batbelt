@@ -29,7 +29,7 @@ open_fun <- function(fun, verbose = TRUE, dev = FALSE, author = NULL) {
   if (isTRUE(dev)) { author <- c(author[-1], 'cran') }        # Put cran at end of search in dev mode.
 
   attempts <- list()
-  for (author in author) {
+  for (subauthor in author) {
     ll <- list(package, fun, author, cap_r = FALSE)
     attempts[[length(attempts) + 1]] <- ll
     ll$cap_r <- TRUE
@@ -53,7 +53,7 @@ open_fun <- function(fun, verbose = TRUE, dev = FALSE, author = NULL) {
     }
     amount_prior_attempts <- length(attempts)
     attempts <- list()
-    for (author in author) {
+    for (subauthor in author) {
       ll <- list(package, fun, author)
       attempts[[length(attempts) + 1]] <- ll
     }
