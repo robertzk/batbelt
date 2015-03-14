@@ -4,7 +4,7 @@ last <- function(x) tail(x, n = 1)
 
 #' The counterpart to isTRUE.
 #' @export
-isFALSE <- function(x) !isTRUE(x)
+isFALSE <- function(x) identical(x, FALSE)
 
 #' Capitalizes the first letter of a string.
 #' @export
