@@ -30,7 +30,7 @@ open_fun <- function(fun, verbose = TRUE, dev = FALSE, author = NULL) {
 
   attempts <- list()
   for (subauthor in author) {
-    ll <- list(package, fun, author, cap_r = FALSE)
+    ll <- list(package, fun, subauthor, cap_r = FALSE)
     attempts[[length(attempts) + 1]] <- ll
     ll$cap_r <- TRUE
     attempts[[length(attempts) + 1]] <- ll
@@ -54,7 +54,7 @@ open_fun <- function(fun, verbose = TRUE, dev = FALSE, author = NULL) {
     amount_prior_attempts <- length(attempts)
     attempts <- list()
     for (subauthor in author) {
-      ll <- list(package, fun, author)
+      ll <- list(package, fun, subauthor)
       attempts[[length(attempts) + 1]] <- ll
     }
     for (i in seq_along(attempts)) {
@@ -72,5 +72,5 @@ open_fun <- function(fun, verbose = TRUE, dev = FALSE, author = NULL) {
 }
 
 is.error <- function(curl_output) {
-  identical(curl_output, "{\"error\":\"Not Found\"}")
+  identical(curl_output, '') || identical(curl_output, "{\"error\":\"Not Found\"}")
 }

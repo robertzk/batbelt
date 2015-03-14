@@ -4,8 +4,7 @@
 \alias{open_fun}
 \title{Opens a function in GitHub or dies trying.}
 \usage{
-open_fun(fun, verbose = TRUE, dev = FALSE, author = c("hadley",
-  "robertzk", "peterhurford"))
+open_fun(fun, verbose = TRUE, dev = FALSE, author = NULL)
 }
 \arguments{
 \item{fun}{function or character. The function to open in GitHub.}
