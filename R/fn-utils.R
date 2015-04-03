@@ -11,6 +11,7 @@
 #' 2 %>% (identity %>% delay_by(10))
 #' @export
 delay_by <- function(f, delay) {
+  force(f); force(delay)
   function(...) {
     Sys.sleep(delay)
     f(...)
@@ -34,6 +35,7 @@ progress_bar <- function(f, bar = 'default', default.n = 1) {
     warning('Progress bar', sQuote(bar), 'not found.  Defaulting.')
     bar <- 'default'
   }
+  force(f); force(default.n)
   runs <- 1
   function(...) {
     if (runs %% default.n == 0) cat('.')
