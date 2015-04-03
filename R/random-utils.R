@@ -7,6 +7,7 @@ last <- function(x) tail(x, n = 1)
 isFALSE <- function(x) identical(x, FALSE)
 
 #' Capitalizes the first letter of a string.
+#' @import magrittr
 #' @export
 capitalize <- function(x) {
   x %>% substr(., 1, 1) %>% toupper() %>% paste0(., substring(x, 2))
