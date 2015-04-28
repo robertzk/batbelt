@@ -7,7 +7,7 @@
 as.ordinal(num)
 }
 \arguments{
-\item{number.}{The number to convert to ordinal.}
+\item{num}{numeric. The number to convert to ordinal.}
 }
 \description{
 Converts a number to an ordinal (e.g., first, second, etc.)
