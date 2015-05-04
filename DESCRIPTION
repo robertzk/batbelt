@@ -2,7 +2,7 @@ Package: batbelt
 Type: Package
 Title: batbelt (http://github.com/peterhurford/batbelt)
 Description: A collection of random R utility functions.
-Version: 0.1.1
+Version: 0.1.2
 Author: Peter Hurford <peter@peterhurford.com>
 Maintainer: Peter Hurford <peter@peterhurford.com>
 Authors@R: c(person("Peter", "Hurford",

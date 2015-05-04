@@ -15,7 +15,7 @@ open_fun <- function(fun, verbose = TRUE, dev = FALSE, author = NULL) {
 
   if (!is.character(fun)) fun <- deparse(substitute(fun))
   
-  package <- paris::find_fun(fun)
+  package <- find_fun(fun)
 
   for(char in c('/', ':::', '::')) {
     if (grepl(char, fun)) fun <- strsplit(fun, char)[[1]][[2]]
