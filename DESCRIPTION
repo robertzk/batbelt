@@ -15,7 +15,6 @@ Imports:
     stringr
 Suggests:
     RCurl,
-    paris,
     magrittr,
     knitr,
     microbenchmark,
